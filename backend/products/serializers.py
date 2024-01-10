@@ -9,11 +9,12 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = [
-            'title',
-            'content',
-            'price',
-            'sale_price',
-            'serializer_discount',
+            "id",
+            "title",
+            "content",
+            "price",
+            "sale_price",
+            "serializer_discount",
         ]
 
     def get_serializer_discount(self, obj: Product):
