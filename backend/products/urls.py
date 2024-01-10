@@ -1,6 +1,13 @@
 from django.urls import path
 
 from .import views
+
+
 urlpatterns = [
-    path('<int:pk>', views.ProductDetailAPIVIew.as_view())
+    path('', views.ProductListCreateAPIView.as_view()),
+    path('<int:pk>/update/', views.ProductUpdateAPIVIew.as_view()),
+    path('<int:pk>/delete/', views.ProductDeleteAPIVIew.as_view()),
+    path('<int:pk>/', views.ProductDetailAPIVIew.as_view()),
+    # path('', views.product_alt_view),
+    # path('<int:pk>/', views.product_alt_view),
 ]
