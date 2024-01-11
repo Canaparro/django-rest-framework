@@ -35,6 +35,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "edit_url",
             # "email",
             "user",
+            "public",
         ]
 
     def get_serializer_discount(self, obj: Product):
