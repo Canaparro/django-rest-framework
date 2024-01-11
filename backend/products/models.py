@@ -45,6 +45,10 @@ class Product(models.Model):
         return self.public
 
     @property
+    def body(self):
+        return self.content
+
+    @property
     def sale_price(self):
         return "%.2f" % (float(self.price) * 0.8)
 

@@ -21,6 +21,7 @@ class ProductSerializer(serializers.ModelSerializer):
             validators.unique_product_title,
         ]
     )
+    body = serializers.CharField(source="content")
 
     class Meta:
         model = Product
@@ -28,6 +29,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "content",
+            "body",
             "price",
             "sale_price",
             "serializer_discount",

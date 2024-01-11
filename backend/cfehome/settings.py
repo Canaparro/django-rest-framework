@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import datetime
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,7 +42,9 @@ INSTALLED_APPS = [
     # third party api services
     "algoliasearch_django",
     # third party packages
+    "corsheaders",
     "rest_framework",
+    "rest_framework_simplejwt",
     "rest_framework.authtoken",
     # django apps in project
     "api",
@@ -51,6 +55,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -59,6 +64,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "cfehome.urls"
+CORS_URLS_REGEX = r"^/api/.*"
+CORS_ALLOWED_ORIGINS = ["http://localhost:8111"]
 
 TEMPLATES = [
     {
@@ -135,6 +142,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
         "api.authentication.CustomTokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly"
@@ -148,4 +156,10 @@ ALGOLIA = {
     "APPLICATION_ID": "PL1CHLHFFA",
     "API_KEY": "db329d873daa456b453826fd7409a833",
     "INDEX_PREFIX": "cfe",
+}
+
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ["Bearer"],
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(seconds=30),
+    "REFRESH_TOKEN_LIFETIME": datetime.timedelta(minutes=1),
 }

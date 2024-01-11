@@ -14,6 +14,6 @@ auth_response = requests.post(
 if auth_response.status_code == 200:
     token = auth_response.json()["token"]
     print(token)
-    headers = {"Authorization": f"Bearer {token}"}
+    headers = {"Authorization": f"Token {token}"}
     get_response = requests.get(endpoint, headers=headers)
     print(get_response.json())
