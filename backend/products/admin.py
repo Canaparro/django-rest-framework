@@ -5,7 +5,7 @@ from .models import Product
 
 
 class ProductAdminView(admin.ModelAdmin):
-    fields = ["title", "content", "price"]
+    pass
 
 
 admin.site.register(Product, ProductAdminView)
